@@ -13,22 +13,43 @@ describe('Utils test suite', () => {
     expect(actual).toBe(expectedResult);
   });
 
-  it('Should return info for valid string', () => {
-    const actual = getStringInfo('My-String');
+  describe('getStringInfo for arg My-String should', () => {
+    test('return right length', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.characters.length).toBe(9); //valid test but it's not very clean
+      expect(actual.characters).toHaveLength(9); //this is a cleaner way to do it
+    });
 
-    expect(actual.lowerCase).toBe('my-string'); //toBe is used with primitive types
-    expect(actual.extraInfo).toEqual({}); //When we compare objects we should use toEqual.
+    test('return right lower case', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.lowerCase).toBe('my-string'); //toBe is used with primitive types
+    });
 
-    expect(actual.characters.length).toBe(9); //valid test but it's not very clean
-    expect(actual.characters).toHaveLength(9); //this is a cleaner way to do it
+    test('return right uppercase case', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.upperCase).toBe('MY-STRING'); //toBe is used with primitive types
+    });
 
-    expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g']); //Compare arrays containing characters in the same order
-    expect(actual.characters).toContain<string>('M'); //Check if an array contains a character
-    expect(actual.characters).toEqual(expect.arrayContaining(['S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'])); //Check if the array contains some characters but we don't know the order
+    test('return right characters', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g']); //Compare arrays containing characters in the same order
+      expect(actual.characters).toContain<string>('M'); //Check if an array contains a character
+      expect(actual.characters).toEqual(expect.arrayContaining(['S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'])); //Check if the array contains some characters but we don't know the order
+    });
 
-    expect(actual.extraInfo).not.toBe(undefined);
-    expect(actual.extraInfo).not.toBeUndefined();
-    expect(actual.extraInfo).toBeDefined();
-    expect(actual.extraInfo).toBeTruthy();
+    test('return defined extra info', () => {
+      const actual = getStringInfo('My-String');
+
+      expect(actual.extraInfo).not.toBe(undefined);
+      expect(actual.extraInfo).not.toBeUndefined();
+      expect(actual.extraInfo).toBeDefined();
+      expect(actual.extraInfo).toBeTruthy();
+    });
+
+    test('return right extra info', () => {
+      const actual = getStringInfo('My-String');
+
+      expect(actual.extraInfo).toEqual({}); //When we compare objects we should use toEqual.
+    });
   });
 });
