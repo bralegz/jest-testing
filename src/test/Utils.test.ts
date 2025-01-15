@@ -1,6 +1,25 @@
-import { getStringInfo, toUpperCase } from '../app/Utils';
+import { getStringInfo, toUpperCase, StringUtils } from '../app/Utils';
 
 describe('Utils test suite', () => {
+  describe.only('StringUtils tests', () => {
+    let sut: StringUtils;
+
+    beforeEach(() => {
+      sut = new StringUtils();
+    });
+
+    afterEach(() => {
+      //cleaning mocks
+      console.log('Teardown')
+    })
+
+    it('Should return correct uppercase', () => {
+      const actual = sut.toUpperCase('abc');
+
+      expect(actual).toBe('ABC');
+    });
+  });
+
   it('should return uppercase of a valid string', () => {
     //arrange
     const sut = toUpperCase;
@@ -14,7 +33,7 @@ describe('Utils test suite', () => {
   });
 
   //Parametrized tests are used to test multiple cases in a straightforward way
-  describe.only('ToUpperCaseExamples', () => {
+  describe('ToUpperCaseExamples', () => {
     it.each([
       { input: 'abc', expected: 'ABC' },
       { input: 'My-String', expected: 'MY-STRING' },
