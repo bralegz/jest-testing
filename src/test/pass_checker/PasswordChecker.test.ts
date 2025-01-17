@@ -45,6 +45,19 @@ describe('PasswordChecker test suite', () => {
     expect(actual.reasons).not.toContain(PasswordErrors.NO_LOWER_CASE);
   });
 
+  it('Password without a number is invalid', () => {
+    const actual = sut.checkPassword('ABCD');
+
+    expect(actual.valid).toBe(false);
+    expect(actual.reasons).toContain(PasswordErrors.NO_NUMBER);
+  });
+
+  it('Password with number is ok', () => {
+    const actual = sut.checkPassword('1232ABCDa');
+
+    expect(actual.reasons).not.toContain(PasswordErrors.NO_NUMBER);
+  });
+
   it('Complex password is valid', () => {
     const actual = sut.checkPassword('1234abcD');
 
