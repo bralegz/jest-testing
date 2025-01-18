@@ -23,3 +23,19 @@ export function toUpperCaseWithCallback(arg: string, callBack: LoggerServiceCall
 
   return arg.toUpperCase();
 }
+
+export class OtherStringUtils {
+
+  public callExternalService() {
+    //lets assume this method calls some internet service and we don't want to do that when we run our tests
+    console.log('Calling external service...')
+  }
+
+  public toUpperCase(arg: string): string {
+    return arg.toUpperCase();
+  }
+
+  public logString(arg: String): void {
+    console.log(arg);
+  }
+}
