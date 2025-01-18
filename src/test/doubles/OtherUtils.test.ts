@@ -25,6 +25,7 @@ describe('OtherUtils test suite', () => {
     });
 
     test.only('Use a spy to replace the implementation of a method', () => {
+      //change implementation of callExternalService
       jest.spyOn(sut, 'callExternalService').mockImplementation(() => {
         console.log('calling mocked implementation...');
       });
