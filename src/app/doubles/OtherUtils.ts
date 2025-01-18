@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 export type stringInfo = {
   lowerCase: string;
   upperCase: string;
@@ -7,6 +9,14 @@ export type stringInfo = {
 };
 
 type LoggerServiceCallBack = (arg: string) => void;
+
+export function toUpperCase(arg: string) {
+  return arg.toUpperCase();
+}
+
+export function toLowerCaseWithId(arg: string) {
+  return arg.toLowerCase() + v4();
+}
 
 export function calculateComplexity(stringInfo: stringInfo) {
   //calculates the complexity of the objects multiplying the number of keys of extra info by the number of keys of string Info itself
@@ -25,10 +35,9 @@ export function toUpperCaseWithCallback(arg: string, callBack: LoggerServiceCall
 }
 
 export class OtherStringUtils {
-
   public callExternalService() {
     //lets assume this method calls some internet service and we don't want to do that when we run our tests
-    console.log('Calling external service...')
+    console.log('Calling external service...');
   }
 
   public toUpperCase(arg: string): string {
